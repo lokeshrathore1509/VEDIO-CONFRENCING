@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: zoom-video-conferencing
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: MONGO_URL
+        sync: false
