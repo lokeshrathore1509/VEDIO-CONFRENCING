@@ -1,96 +1,562 @@
+/* ==========================================================================
+   Base Layout & Landing Page Styling
+   ========================================================================== */
+
 .landingPageContainer {
-  width: 100vw;
-  height: 100vh;
-  background: url("/public/background.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: white;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(10, 14, 26, 0.95), rgba(19, 27, 46, 0.92)),
+              url("/public/background.png") no-repeat center center / cover;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .landingPageContainer nav {
-  padding-inline: 1.2rem;
-  padding-block: 1.6rem;
+  padding: 1.2rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.65);
+  border-bottom: 1px solid var(--border-glass);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
 }
 
-.landingPageContainer nav h2 {
-  font-size: 1.8rem;
-  font-weight: 500;
+.landingPageContainer nav .navHeader h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 40%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .landingPageContainer nav .navlist {
   display: flex;
-  gap: 1.6rem;
-  cursor: pointer;
-
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
 }
 
+.landingPageContainer nav .navlist p {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 500;
+  color: #cbd5e1;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.landingPageContainer nav .navlist p:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.landingPageContainer nav .navlist div[role='button'] {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  padding: 0.45rem 1.2rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(217, 117, 0, 0.35);
+}
+
+.landingPageContainer nav .navlist div[role='button']:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 117, 0, 0.5);
+}
+
+.landingPageContainer nav .navlist div[role='button'] p {
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 0;
+}
+
+/* Landing Main Hero Section */
 .landingMainContainer {
+  flex: 1;
   display: flex;
   justify-content: space-between;
-  padding-inline: 3rem;
-  height: 80vh;
+  align-items: center;
+  padding: 2rem clamp(1.2rem, 5vw, 4rem);
+  gap: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.landingMainContainer > div:nth-child(1) {
+  flex: 1.2;
+  max-width: 650px;
+  z-index: 2;
+}
+
+.landingMainContainer > div:nth-child(1) h1 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.landingMainContainer > div:nth-child(1) p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button'] {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  width: fit-content;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(217, 117, 0, 0.4);
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button']:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(217, 117, 0, 0.6);
+}
+
+.landingMainContainer > div:nth-child(1) div[role='button'] a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.landingMainContainer > div:nth-child(2) {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.landingMainContainer>div:nth-child(1) {
-  font-size: 2.2rem;
-}
-
-.landingMainContainer>div:nth-child(1) div[role='button'] {
-  background: #D97500;
-  width: fit-content;
-  padding: 1rem;
-  border-radius: 20px;
-  margin-top: 1.9rem;
-}
-
-.landingMainContainer>div:nth-child(1) div[role='button'] a {
-  text-decoration: none;
-  color: white;
-  font-size: 1.7rem;
-}
-
-.landingMainContainer>div:nth-child(2) img {
-  height: 70vh;
+.landingMainContainer > div:nth-child(2) img {
+  max-height: 65vh;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+  animation: floatHero 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatHero {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-12px);
+  }
+}
+
+/* ==========================================================================
+   Home / Dashboard Page Styling
+   ========================================================================== */
+
+.homePageContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at 80% 20%, rgba(217, 117, 0, 0.08) 0%, transparent 40%),
+              var(--bg-dark);
 }
 
 .navBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: 20px;
-  text-align: center;
-
+  padding: 1rem clamp(1rem, 4vw, 2.5rem);
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-glass);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
-.meetContainer {
+
+.navBar h2 {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 40%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navBar .navActions {
   display: flex;
-  padding-inline: 20px;
-  height: 80vh;
-  gap: 10vw;
+  align-items: center;
+  gap: clamp(0.5rem, 1.5vw, 1.2rem);
+}
+
+.navBar .historyBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-glass);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.navBar .historyBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.navBar .logoutBtn {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  border-radius: var(--radius-full) !important;
+  padding: 6px 16px !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.navBar .logoutBtn:hover {
+  background: rgba(239, 68, 68, 0.25) !important;
+  border-color: #ef4444 !important;
+  transform: translateY(-1px);
+}
+
+.meetContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem clamp(1.2rem, 5vw, 4rem);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.leftPanel {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
+.leftPanel h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
 
-
-.leftPanel {
-  height: 100%;
+.leftPanel .joinForm {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 480px;
+  margin-top: 1rem;
+}
 
+.leftPanel .joinForm .meetingInput {
+  flex: 1;
+  min-width: 200px;
+}
+
+.leftPanel .joinForm .meetingInput .MuiOutlinedInput-root {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  color: white;
+}
+
+.leftPanel .joinForm .meetingInput .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border-glass);
+}
+
+.leftPanel .joinForm .meetingInput:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.leftPanel .joinForm .meetingInput .MuiInputLabel-root {
+  color: var(--text-muted);
+}
+
+.leftPanel .joinForm .joinBtn {
+  background: linear-gradient(135deg, var(--secondary), var(--primary)) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 12px 28px !important;
+  border-radius: var(--radius-md) !important;
+  text-transform: none !important;
+  font-size: 1rem !important;
+  box-shadow: 0 4px 14px rgba(217, 117, 0, 0.4) !important;
+  transition: all 0.25s ease !important;
+}
+
+.leftPanel .joinForm .joinBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 117, 0, 0.6) !important;
 }
 
 .rightPanel {
+  flex: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .rightPanel > img {
-  width: 30vw;
+  width: 100%;
+  max-width: 420px;
   height: auto;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.rightPanel > img:hover {
+  transform: scale(1.02);
+}
+
+/* ==========================================================================
+   History Page Styling
+   ========================================================================== */
+
+.historyPageWrapper {
+  min-height: 100vh;
+  background: var(--bg-dark);
+  padding: 1.5rem clamp(1rem, 4vw, 3rem);
+}
+
+.historyContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.historyHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.historyHeaderTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.historyHeaderTitle h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.historyBackBtn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: white !important;
+  border: 1px solid var(--border-glass) !important;
+  transition: all 0.2s ease !important;
+}
+
+.historyBackBtn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  transform: translateX(-2px);
+}
+
+.historyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.historyCardItem {
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-md) !important;
+  color: white !important;
+  transition: all 0.25s ease !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.historyCardItem:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 152, 57, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.historyCardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem !important;
+}
+
+.historyMeetingInfo h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.historyMeetingInfo p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.historyRejoinBtn {
+  background: rgba(217, 117, 0, 0.15) !important;
+  color: var(--secondary) !important;
+  border: 1px solid rgba(217, 117, 0, 0.3) !important;
+  border-radius: var(--radius-full) !important;
+  padding: 6px 16px !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.historyRejoinBtn:hover {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+.historyEmptyState {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed var(--border-glass);
+  border-radius: var(--radius-lg);
+  margin-top: 1rem;
+}
+
+.historyEmptyState p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   Responsive Media Queries (Mobile & Tablet)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .landingMainContainer {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    min-height: auto;
+  }
+
+  .landingMainContainer > div:nth-child(1) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .landingMainContainer > div:nth-child(2) img {
+    max-height: 36vh;
+  }
+
+  .meetContainer {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .leftPanel {
+    align-items: center;
+  }
+
+  .leftPanel .joinForm {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .rightPanel > img {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .landingPageContainer nav {
+    padding: 0.9rem 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .landingPageContainer nav .navlist {
+    width: 100%;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .landingPageContainer nav .navlist p {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .landingMainContainer {
+    padding: 1.5rem 1rem;
+  }
+
+  .landingMainContainer > div:nth-child(1) div[role='button'] {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .navBar {
+    padding: 0.75rem 1rem;
+    justify-content: center;
+  }
+
+  .navBar .navActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .leftPanel .joinForm {
+    flex-direction: column;
+  }
+
+  .leftPanel .joinForm .joinBtn {
+    width: 100%;
+    padding: 12px !important;
+  }
+
+  .historyCardContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .historyRejoinBtn {
+    width: 100%;
+  }
 }
