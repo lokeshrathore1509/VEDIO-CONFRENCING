@@ -1,53 +1,60 @@
-import React from 'react'
-import "../App.css"
-import { Link, useNavigate } from 'react-router-dom'
+import React from 'react';
+import "../App.css";
+import { Link, useNavigate } from 'react-router-dom';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+
 export default function LandingPage() {
-
-
-    const router = useNavigate();
+    const navigate = useNavigate();
 
     return (
-        <div className='landingPageContainer'>
+        <div 
+            className='landingPageContainer'
+            style={{
+                backgroundImage: 'linear-gradient(135deg, rgba(10, 14, 26, 0.95), rgba(19, 27, 46, 0.92)), url(/background.png)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center',
+                backgroundSize: 'cover'
+            }}
+        >
             <nav>
-                <div className='navHeader'>
+                <div className='navHeader' onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+                    <VideoCallIcon sx={{ color: "#ff9839", fontSize: { xs: "1.75rem", sm: "2.2rem" } }} />
                     <h2>Apna Video Call</h2>
                 </div>
                 <div className='navlist'>
-                    <p onClick={() => {
-                        router("/aljk23")
-                    }}>Join as Guest</p>
-                    <p onClick={() => {
-                        router("/auth")
-
-                    }}>Register</p>
-                    <div onClick={() => {
-                        router("/auth")
-
-                    }} role='button'>
-                        <p>Login</p>
-                    </div>
+                    <button className='navGuestBtn' onClick={() => {
+                        const randomId = Math.random().toString(36).substring(2, 9);
+                        navigate(`/${randomId}`);
+                    }}>
+                        Join as Guest
+                    </button>
+                    <button className='navAuthBtn' onClick={() => navigate("/auth")}>
+                        Register
+                    </button>
+                    <button className='navLoginBtn' onClick={() => navigate("/auth")}>
+                        Login
+                    </button>
                 </div>
             </nav>
 
-
             <div className="landingMainContainer">
-                <div>
-                    <h1><span style={{ color: "#FF9839" }}>Connect</span> with your loved Ones</h1>
-
-                    <p>Cover a distance by Apna Video Call</p>
-                    <div role='button'>
-                        <Link to={"/auth"}>Get Started</Link>
+                <div className="landingHeroText">
+                    <h1>
+                        <span className="gradientHighlight">Connect</span> with your loved ones
+                    </h1>
+                    <p>
+                        Crystal-clear, high quality peer-to-peer video calling without boundaries. Start or join instant meetings from any device.
+                    </p>
+                    <div className="heroActionGroup">
+                        <Link to="/auth" className="getStartedBtn">
+                            Get Started Free
+                        </Link>
                     </div>
                 </div>
-                <div>
-
-                    <img src="/mobile.png" alt="" />
-
+                <div className="landingHeroImage">
+                    <img src="/mobile.png" alt="Mobile Video Conferencing Preview" />
                 </div>
             </div>
-
-
-
         </div>
-    )
+    );
 }

@@ -4,9 +4,9 @@
 
 .landingPageContainer {
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
-  background: linear-gradient(135deg, rgba(10, 14, 26, 0.95), rgba(19, 27, 46, 0.92)),
-              url("/public/background.png") no-repeat center center / cover;
+  background-color: var(--bg-dark);
   color: var(--text-main);
   display: flex;
   flex-direction: column;
@@ -15,68 +15,78 @@
 }
 
 .landingPageContainer nav {
-  padding: 1.2rem 2rem;
+  padding: 1rem clamp(1rem, 4vw, 2.5rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(12px);
-  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(15, 23, 42, 0.75);
   border-bottom: 1px solid var(--border-glass);
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: all 0.3s ease;
+  gap: 1rem;
 }
 
-.landingPageContainer nav .navHeader h2 {
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+.navHeader, .navBrand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.navHeader h2, .navBrand h2 {
+  font-size: clamp(1.15rem, 2.5vw, 1.6rem);
   font-weight: 700;
   letter-spacing: -0.5px;
   background: linear-gradient(135deg, #ffffff 40%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin: 0;
 }
 
 .landingPageContainer nav .navlist {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  gap: clamp(0.5rem, 1.5vw, 1rem);
   flex-wrap: wrap;
 }
 
-.landingPageContainer nav .navlist p {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: 500;
+.navGuestBtn, .navAuthBtn {
+  background: rgba(255, 255, 255, 0.08);
   color: #cbd5e1;
+  border: 1px solid var(--border-glass);
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
   cursor: pointer;
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--radius-sm);
   transition: all 0.2s ease;
 }
 
-.landingPageContainer nav .navlist p:hover {
+.navGuestBtn:hover, .navAuthBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-.landingPageContainer nav .navlist div[role='button'] {
+.navLoginBtn {
   background: linear-gradient(135deg, var(--secondary), var(--primary));
-  padding: 0.45rem 1.2rem;
+  color: #ffffff;
+  border: none;
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  font-weight: 700;
+  padding: 0.5rem 1.3rem;
   border-radius: var(--radius-full);
   cursor: pointer;
-  transition: all 0.25s ease;
   box-shadow: 0 4px 14px rgba(217, 117, 0, 0.35);
+  transition: all 0.25s ease;
 }
 
-.landingPageContainer nav .navlist div[role='button']:hover {
+.navLoginBtn:hover {
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(217, 117, 0, 0.5);
-}
-
-.landingPageContainer nav .navlist div[role='button'] p {
-  color: #ffffff !important;
-  font-weight: 600;
-  padding: 0;
 }
 
 /* Landing Main Hero Section */
@@ -85,65 +95,78 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem clamp(1.2rem, 5vw, 4rem);
-  gap: 2rem;
-  min-height: calc(100vh - 80px);
+  padding: clamp(1.5rem, 4vw, 3.5rem) clamp(1rem, 5vw, 4rem);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.landingMainContainer > div:nth-child(1) {
+.landingHeroText {
   flex: 1.2;
-  max-width: 650px;
+  max-width: 620px;
   z-index: 2;
 }
 
-.landingMainContainer > div:nth-child(1) h1 {
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
+.landingHeroText h1 {
+  font-size: clamp(1.85rem, 4.5vw, 3.2rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 
-.landingMainContainer > div:nth-child(1) p {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+.gradientHighlight {
+  color: #ff9839;
+  background: linear-gradient(135deg, #ff9839, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.landingHeroText p {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
-.landingMainContainer > div:nth-child(1) div[role='button'] {
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
-  width: fit-content;
-  padding: 0.9rem 2.2rem;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px rgba(217, 117, 0, 0.4);
+.heroActionGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.landingMainContainer > div:nth-child(1) div[role='button']:hover {
+.getStartedBtn {
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  padding: 0.85rem 2.2rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  color: #ffffff;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 24px rgba(217, 117, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+  text-align: center;
+}
+
+.getStartedBtn:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 12px 30px rgba(217, 117, 0, 0.6);
 }
 
-.landingMainContainer > div:nth-child(1) div[role='button'] a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  display: block;
-}
-
-.landingMainContainer > div:nth-child(2) {
+.landingHeroImage {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.landingMainContainer > div:nth-child(2) img {
-  max-height: 65vh;
+.landingHeroImage img {
+  max-height: 55vh;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -152,12 +175,8 @@
 }
 
 @keyframes floatHero {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(-12px);
-  }
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-12px); }
 }
 
 /* ==========================================================================
@@ -166,6 +185,7 @@
 
 .homePageContainer {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: radial-gradient(circle at 80% 20%, rgba(217, 117, 0, 0.08) 0%, transparent 40%),
@@ -176,48 +196,41 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem clamp(1rem, 4vw, 2.5rem);
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
+  padding: 0.9rem clamp(1rem, 4vw, 2.5rem);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-glass);
   position: sticky;
   top: 0;
   z-index: 50;
-  flex-wrap: wrap;
   gap: 0.75rem;
-}
-
-.navBar h2 {
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, #ffffff 40%, var(--secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .navBar .navActions {
   display: flex;
   align-items: center;
-  gap: clamp(0.5rem, 1.5vw, 1.2rem);
+  gap: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .navBar .historyBtn {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--border-glass);
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .navBar .historyBtn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
@@ -226,17 +239,16 @@
   color: #f87171 !important;
   border: 1px solid rgba(239, 68, 68, 0.3) !important;
   border-radius: var(--radius-full) !important;
-  padding: 6px 16px !important;
+  padding: 6px 14px !important;
   text-transform: none !important;
   font-weight: 600 !important;
-  font-size: 0.9rem !important;
+  font-size: 0.875rem !important;
   transition: all 0.2s ease !important;
 }
 
 .navBar .logoutBtn:hover {
   background: rgba(239, 68, 68, 0.25) !important;
   border-color: #ef4444 !important;
-  transform: translateY(-1px);
 }
 
 .meetContainer {
@@ -244,9 +256,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem clamp(1.2rem, 5vw, 4rem);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  max-width: 1300px;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 5vw, 4rem);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  max-width: 1250px;
   margin: 0 auto;
   width: 100%;
 }
@@ -256,64 +268,118 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 
-.leftPanel h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+.leftPanelContent {
+  max-width: 540px;
+  width: 100%;
+}
+
+.leftPanelContent h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.5rem);
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   color: var(--text-main);
 }
 
-.leftPanel .joinForm {
+.meetSubtitle {
+  color: var(--text-muted);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  line-height: 1.5;
+  margin-bottom: 1.75rem;
+}
+
+.quickActionsRow {
+  margin-bottom: 1.25rem;
+}
+
+.instantMeetBtn {
+  background: linear-gradient(135deg, var(--secondary), var(--primary)) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  padding: 10px 24px !important;
+  border-radius: var(--radius-md) !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+  box-shadow: 0 4px 14px rgba(217, 117, 0, 0.4) !important;
+  transition: all 0.2s ease !important;
+}
+
+.instantMeetBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 117, 0, 0.6) !important;
+}
+
+.joinDivider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.joinDivider::before, .joinDivider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.joinDivider span {
+  padding: 0 10px;
+}
+
+.joinForm {
   display: flex;
   align-items: stretch;
-  gap: 12px;
-  flex-wrap: wrap;
-  max-width: 480px;
-  margin-top: 1rem;
+  gap: 10px;
+  width: 100%;
 }
 
-.leftPanel .joinForm .meetingInput {
+.meetingInput {
   flex: 1;
-  min-width: 200px;
 }
 
-.leftPanel .joinForm .meetingInput .MuiOutlinedInput-root {
+.meetingInput .MuiOutlinedInput-root {
   background: rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-md);
   color: white;
 }
 
-.leftPanel .joinForm .meetingInput .MuiOutlinedInput-notchedOutline {
+.meetingInput .MuiOutlinedInput-notchedOutline {
   border-color: var(--border-glass);
 }
 
-.leftPanel .joinForm .meetingInput:hover .MuiOutlinedInput-notchedOutline {
-  border-color: rgba(255, 255, 255, 0.3);
+.meetingInput .MuiOutlinedInput-input {
+  padding: 12px 14px;
 }
 
-.leftPanel .joinForm .meetingInput .MuiInputLabel-root {
-  color: var(--text-muted);
-}
-
-.leftPanel .joinForm .joinBtn {
-  background: linear-gradient(135deg, var(--secondary), var(--primary)) !important;
+.joinBtn {
+  background: rgba(255, 255, 255, 0.1) !important;
   color: white !important;
   font-weight: 700 !important;
-  padding: 12px 28px !important;
+  padding: 0 24px !important;
   border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-glass) !important;
   text-transform: none !important;
-  font-size: 1rem !important;
-  box-shadow: 0 4px 14px rgba(217, 117, 0, 0.4) !important;
-  transition: all 0.25s ease !important;
+  font-size: 0.95rem !important;
+  white-space: nowrap;
+  transition: all 0.2s ease !important;
 }
 
-.leftPanel .joinForm .joinBtn:hover {
+.joinBtn:not(:disabled) {
+  background: linear-gradient(135deg, var(--secondary), var(--primary)) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(217, 117, 0, 0.35) !important;
+}
+
+.joinBtn:not(:disabled):hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(217, 117, 0, 0.6) !important;
+  box-shadow: 0 6px 18px rgba(217, 117, 0, 0.5) !important;
 }
 
 .rightPanel {
@@ -325,15 +391,11 @@
 
 .rightPanel > img {
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
   height: auto;
   border-radius: var(--radius-lg);
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4));
   transition: transform 0.3s ease;
-}
-
-.rightPanel > img:hover {
-  transform: scale(1.02);
 }
 
 /* ==========================================================================
@@ -342,12 +404,13 @@
 
 .historyPageWrapper {
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg-dark);
   padding: 1.5rem clamp(1rem, 4vw, 3rem);
 }
 
 .historyContainer {
-  max-width: 800px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
@@ -355,7 +418,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-glass);
 }
@@ -367,27 +430,22 @@
 }
 
 .historyHeaderTitle h2 {
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
   font-weight: 700;
   color: var(--text-main);
+  margin: 0;
 }
 
 .historyBackBtn {
   background: rgba(255, 255, 255, 0.08) !important;
   color: white !important;
   border: 1px solid var(--border-glass) !important;
-  transition: all 0.2s ease !important;
-}
-
-.historyBackBtn:hover {
-  background: rgba(255, 255, 255, 0.16) !important;
-  transform: translateX(-2px);
 }
 
 .historyGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 .historyCardItem {
@@ -396,15 +454,12 @@
   border: 1px solid var(--border-glass) !important;
   border-radius: var(--radius-md) !important;
   color: white !important;
-  transition: all 0.25s ease !important;
-  display: flex;
-  flex-direction: column;
+  transition: all 0.2s ease !important;
 }
 
 .historyCardItem:hover {
   transform: translateY(-2px);
   border-color: rgba(255, 152, 57, 0.4) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .historyCardContent {
@@ -413,19 +468,20 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1.25rem !important;
+  padding: 1rem 1.25rem !important;
 }
 
 .historyMeetingInfo h4 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 4px;
 }
 
 .historyMeetingInfo p {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+  margin: 0;
 }
 
 .historyRejoinBtn {
@@ -433,10 +489,9 @@
   color: var(--secondary) !important;
   border: 1px solid rgba(217, 117, 0, 0.3) !important;
   border-radius: var(--radius-full) !important;
-  padding: 6px 16px !important;
+  padding: 5px 16px !important;
   text-transform: none !important;
   font-weight: 600 !important;
-  transition: all 0.2s ease !important;
 }
 
 .historyRejoinBtn:hover {
@@ -446,7 +501,7 @@
 
 .historyEmptyState {
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 3.5rem 1rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px dashed var(--border-glass);
   border-radius: var(--radius-lg);
@@ -455,98 +510,123 @@
 
 .historyEmptyState p {
   color: var(--text-muted);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 /* ==========================================================================
-   Responsive Media Queries (Mobile & Tablet)
+   Responsive Breakpoints (Mobile, Tablets, Laptops)
    ========================================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
   .landingMainContainer {
     flex-direction: column-reverse;
     justify-content: center;
     text-align: center;
-    padding: 2rem 1.5rem;
-    min-height: auto;
+    padding: 2rem 1.25rem;
+    gap: 1.75rem;
   }
 
-  .landingMainContainer > div:nth-child(1) {
+  .landingHeroText {
     max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .landingMainContainer > div:nth-child(2) img {
-    max-height: 36vh;
+  .heroActionGroup {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .getStartedBtn {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.85rem 1.5rem;
+  }
+
+  .landingHeroImage img {
+    max-height: 32vh;
+    max-width: 240px;
   }
 
   .meetContainer {
     flex-direction: column-reverse;
     text-align: center;
-    padding: 2rem 1.5rem;
-    gap: 2rem;
+    padding: 1.5rem 1.25rem;
+    gap: 1.5rem;
   }
 
   .leftPanel {
     align-items: center;
   }
 
-  .leftPanel .joinForm {
-    justify-content: center;
+  .leftPanelContent {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instantMeetBtn {
     width: 100%;
+    max-width: 340px;
+    padding: 12px 24px !important;
+  }
+
+  .joinDivider {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .joinForm {
+    width: 100%;
+    max-width: 340px;
   }
 
   .rightPanel > img {
-    max-width: 280px;
+    max-width: 220px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 520px) {
   .landingPageContainer nav {
-    padding: 0.9rem 1rem;
+    padding: 0.75rem 0.85rem;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
   .landingPageContainer nav .navlist {
     width: 100%;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
   }
 
-  .landingPageContainer nav .navlist p {
-    font-size: 0.85rem;
-    padding: 0.3rem 0.5rem;
-  }
-
-  .landingMainContainer {
-    padding: 1.5rem 1rem;
-  }
-
-  .landingMainContainer > div:nth-child(1) div[role='button'] {
-    width: 100%;
-    text-align: center;
-    padding: 0.8rem 1.5rem;
+  .navGuestBtn, .navAuthBtn, .navLoginBtn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .navBar {
-    padding: 0.75rem 1rem;
-    justify-content: center;
+    padding: 0.65rem 0.85rem;
+    flex-direction: row;
   }
 
-  .navBar .navActions {
-    width: 100%;
-    justify-content: space-between;
+  .navBar .historyBtn span {
+    display: none; /* Icon-only on very narrow mobile */
   }
 
-  .leftPanel .joinForm {
+  .navBar .historyBtn {
+    padding: 6px;
+    border-radius: 50%;
+  }
+
+  .joinForm {
     flex-direction: column;
+    gap: 8px;
   }
 
-  .leftPanel .joinForm .joinBtn {
+  .joinBtn {
     width: 100%;
     padding: 12px !important;
   }
